@@ -6,7 +6,7 @@ import ImageController from "../controllers/ImageController";
 export const ExpressLoader: MicroframeworkLoader = (settings: MicroframeworkSettings | undefined) => {
     if (settings) {
         const application: Application = createExpressServer({
-            routePrefix: "/api",
+            routePrefix: "/",
             defaultErrorHandler: true,
             controllers: [ImageController],
         });
