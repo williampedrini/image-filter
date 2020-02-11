@@ -1,4 +1,4 @@
-import {bootstrapMicroframework} from 'microframework-w3tec';
+import {bootstrapMicroframework, Microframework} from 'microframework-w3tec';
 import {ExpressLoader} from "./loaders/ExpressLoader";
 import {IocLoader} from "./loaders/IocLoader";
 
@@ -8,5 +8,5 @@ bootstrapMicroframework({
         ExpressLoader
     ],
 })
-.catch(() => "Error")
-.then(() => "Application running.");
+.then(() => console.log("Application is up and running."))
+.catch(error => console.log("Application is crashed:" + error));

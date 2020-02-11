@@ -6,9 +6,10 @@ export const ExpressLoader: MicroframeworkLoader = (settings: MicroframeworkSett
     if (settings) {
         const application: Application = createExpressServer({
             routePrefix: "/api",
+            defaultErrorHandler: true,
             controllers: [__dirname + "/../controllers/*.ts"],
         });
         settings.setData('express_app', application);
-        settings.setData('express_server', application.listen(8081));
+        settings.setData('express_server', application.listen(process.env.PORT || 8082));
     }
 };
