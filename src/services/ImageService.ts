@@ -5,11 +5,11 @@ import {Service} from "typedi";
 @Service()
 export default class ImageService {
 
-    public filter(imageUrl: string): Promise<string> {
+    public async filter(imageUrl: string): Promise<string> {
         if (imageUrl) {
-            return Promise.resolve("OK");
+            return await this.filterImageFromURL(imageUrl);
         }
-        return Promise.reject("ERROR");
+        return Promise.reject("The image url is mandatory.");
     }
 
     /**
@@ -25,7 +25,7 @@ export default class ImageService {
                 .resize(256, 256)
                 .quality(60)
                 .greyscale()
-                .write(__dirname + outPath, (img) => {
+                .write(__dirname + outPath, () => {
                     resolve(__dirname + outPath);
                 });
         });
@@ -35,7 +35,7 @@ export default class ImageService {
      * Responsible for deleting files on the local disk.
      * @param files An array of absolute paths to files.
      */
-    private static delete(files: Array<string>): void {
+    public delete(files: Array<string>): void {
         for (let file of files) {
             fs.unlinkSync(file);
         }
