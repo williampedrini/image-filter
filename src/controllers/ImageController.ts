@@ -12,7 +12,7 @@ export default class ImageController {
     private imageService: ImageService;
 
     @Get("/filteredimage")
-    public async filter(@QueryParam("image_url") imageUrl: string, @Res() response: Response) {
+    public async filter(@QueryParam("image_url") imageUrl: string, @Res() response: Response): Promise<Response> {
         await this.imageService.filter(imageUrl)
             .then(url => ImageController.setResponseFile(url, response))
             .then(url => this.imageService.delete([url]))

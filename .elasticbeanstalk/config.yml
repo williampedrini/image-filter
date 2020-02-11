@@ -1,8 +1,8 @@
 branch-defaults:
   master:
-    environment: null
+    environment: ImageFilter-Development
 deploy:
-  artifact: Archive.zip
+  artifact: ./www/Archive.zip
 global:
   application_name: ImageFilter
   branch: null
