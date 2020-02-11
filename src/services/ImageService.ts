@@ -7,7 +7,8 @@ export default class ImageService {
 
     public async filter(imageUrl: string): Promise<string> {
         if (imageUrl) {
-            return await this.filterImageFromURL(imageUrl);
+            return await this.filterImageFromURL(imageUrl)
+                .catch(() => "Error while filtering the image.");
         }
         return Promise.reject("The image url is mandatory.");
     }
